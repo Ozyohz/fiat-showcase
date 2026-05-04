@@ -69,48 +69,10 @@
 
 ## 🔧 More Capabilities
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### 🧠 Multi-Agent Orchestration
-- Phased, hierarchical, and plan-build orchestration modes
-- Smart routing — auto-classifies intent and selects the best strategy
-- Human-in-the-loop (HITL) with approval gates
-- Handoff tools for lightweight agent-to-agent delegation
-
-</td>
-<td width="50%" valign="top">
-
-### 🗃️ Knowledge & Memory
-- RAG pipeline with multi-format ingestion (PDF, DOCX, PPTX, Excel)
-- Vector search across Milvus, Qdrant, MongoDB
-- Short-term + long-term memory with auto-compression
-- Brain / Vault — git-backed wiki-like knowledge management
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### 🔗 Protocols & Integrations
-- **MCP** — Model Context Protocol for external tools
-- **A2A** — Google's Agent-to-Agent protocol
-- Plugin system for custom extensions
-- Temporal workflows for durable, long-running tasks
-
-</td>
-<td width="50%" valign="top">
-
-### 🎨 Frontend
-- 45+ pages — chat, agents, tools, RAG, memory, org, tracing, ...
-- Dark glassmorphism design with teal accents
-- Real-time streaming UI with live tracing
-- Zustand state management + feature-based architecture
-
-</td>
-</tr>
-</table>
+🧠 **Multi-Agent Orchestration** — phased, hierarchical, plan-build modes with smart routing & HITL  
+🗃️ **RAG & Memory** — multi-format ingestion, vector search, short/long-term memory  
+🔗 **MCP & A2A** — Model Context Protocol + Google Agent-to-Agent protocol  
+🎨 **45+ Page Frontend** — dark glassmorphism UI with real-time streaming & live tracing
 
 ---
 
