@@ -36,12 +36,9 @@
 </p>
 
 - **ReAct Agent Loop** — reasoning + action cycle with real-time thought streaming
-- **40+ Built-in Tools** — web search, code execution, file read/write, grep, git, data analysis, and more
-- **MCP Integration** — Model Context Protocol support for connecting external tool servers
-- **Multi-model Support** — seamlessly switch between OpenAI, Anthropic (Claude), Google Gemini, Qwen, Ollama
-- **Streaming Responses** — real-time `thinking → token_chunk → done` SSE protocol
-- **Session Management** — persistent conversation history with search, projects, and artifact storage
-- **CC Mode** — ported & extended Claude Code engine for advanced agentic coding tasks
+- **40+ Built-in Tools** — web search, code execution, file I/O, git, data analysis, and more
+- **Multi-model Support** — OpenAI, Anthropic (Claude), Gemini, Qwen, Ollama
+- **MCP Integration** — Model Context Protocol for connecting external tool servers
 
 ---
 
@@ -51,11 +48,9 @@
   <img src="screenshots/automations.png" alt="Automations" width="100%" />
 </p>
 
-- **Cron Jobs** — schedule agents to run on any cron expression (e.g. daily reports, data sync)
-- **Webhooks** — trigger agent workflows from external services via HTTP endpoints
-- **Event Triggers** — fire agents on custom events with conditional rules
-- **Autonomous Mode** — agents that run independently on intervals, monitoring and acting without human input
-- **Execution History** — full audit trail of every automated run with stats and logs
+- **Cron Jobs** — schedule agents on any cron expression
+- **Webhooks & Triggers** — trigger agent workflows from external services or custom events
+- **Autonomous Mode** — agents that run independently on intervals without human input
 
 ---
 
@@ -65,12 +60,10 @@
   <img src="screenshots/behavior.png" alt="Behavior & Guardrails" width="100%" />
 </p>
 
-- **Prompt Guard** — scans incoming prompts for injection attacks, PII, and malicious patterns
-- **Output Guard** — validates agent responses for quality, safety, and schema compliance
+- **Prompt & Output Guard** — scans for injection attacks, PII, and validates response quality
 - **Circuit Breaker** — halts cascading failures when error rate exceeds threshold
-- **Model Escalation** — automatically upgrades to higher-tier models for complex tasks
-- **Budget Guard** — monitors and limits token/API spend to prevent cost overruns
-- **Supervisor** — reviews agent output quality and triggers retries if below threshold
+- **Model Escalation & Budget Guard** — auto-upgrades models for complex tasks, limits token spend
+- **Supervisor** — reviews output quality and triggers retries if below threshold
 
 ---
 
@@ -152,8 +145,8 @@
 
 ## 👤 Author
 
-**Luan Dang Quang**  
-📧 Ozyohz@gmail.com  
+**Luan Dam Quang**  
+📧 luandq92@gmail.com  
 🔗 [GitHub](https://github.com/Ozyohz)
 
 ---
