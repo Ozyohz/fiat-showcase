@@ -27,81 +27,97 @@
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-### 🧠 Intelligent Agent System
-- **ReAct Agent Loop** — reasoning + action cycle with tool calls, powered by a ported & extended Claude Code engine
-- **Multi-agent Orchestration** — phased, hierarchical, and plan-build modes with automatic task decomposition
-- **Smart Routing** — auto-classifies user intent and routes to the best agent or orchestration strategy
-- **Human-in-the-loop (HITL)** — real-time interruption, approval gates, and seamless resume
+### 💬 AI Chat — Intelligent Conversation with Tool Calling
 
-### 🔗 Multi-Agent Architecture
-- **Onion Middleware Stack** — tracing → guard → rate-limit → budget → routing → context, each handling pre/post phases
-- **CC Worker Pool** — singleton pool with semaphore-based concurrency control for both user-facing and internal task agents
-- **Orchestration Managers** — `PhasedManager`, `HierarchicalManager`, `PlanBuildManager` with nestable delegation
-- **Handoff Tools** — lightweight Swarm-style agent-to-agent delegation via tool calls
+<p align="center">
+  <img src="screenshots/chat.png" alt="AI Chat" width="100%" />
+</p>
 
-### 🗃️ Knowledge & Memory
-- **RAG Pipeline** — multi-format document ingestion (PDF, DOCX, PPTX, Excel), chunking, vector search (Milvus, Qdrant, MongoDB)
-- **Knowledge Base** — graph-based knowledge system with semantic search and citation tracking
-- **Memory System** — short-term (in-memory), long-term (Redis, SQLite), with automatic compression
-- **Brain / Vault** — wiki-like knowledge management with frontmatter, git-backed versioning
-
-### 🛠️ Tools & Integrations
-- **MCP Support** — Model Context Protocol client with fine-grained callable functions
-- **A2A Protocol** — Google's Agent-to-Agent protocol for inter-service agent communication
-- **Plugin System** — extensible plugin architecture for custom tools and capabilities
-- **40+ Built-in Tools** — code execution, shell, web search, file operations, data analysis, and more
-
-### 📡 Real-time & Streaming
-- **SSE Streaming** — `thinking → token_chunk → done` event protocol for real-time chat
-- **Realtime Voice Agent** — voice input/output with WebSocket support
-- **Temporal Workflows** — durable, long-running agent workflows with progress tracking
-
-### 🎨 Frontend (React + Tailwind CSS 4)
-- **Glassmorphism Design** — dark-first theme with backdrop blur, teal accents, and smooth animations
-- **45+ Pages** — chat, agents, models, tools, RAG, memory, knowledge graph, organization, automation, tracing, and more
-- **Real-time UI** — streaming chat, live tracing, interactive pipeline visualization
+- **ReAct Agent Loop** — reasoning + action cycle with real-time thought streaming
+- **40+ Built-in Tools** — web search, code execution, file read/write, grep, git, data analysis, and more
+- **MCP Integration** — Model Context Protocol support for connecting external tool servers
+- **Multi-model Support** — seamlessly switch between OpenAI, Anthropic (Claude), Google Gemini, Qwen, Ollama
+- **Streaming Responses** — real-time `thinking → token_chunk → done` SSE protocol
+- **Session Management** — persistent conversation history with search, projects, and artifact storage
+- **CC Mode** — ported & extended Claude Code engine for advanced agentic coding tasks
 
 ---
 
-## 🏗️ Architecture
+### ⚡ Automations — Scheduled & Event-driven Agent Execution
 
-```
-┌────────────────────────────────────────────────────────────┐
-│                     ENTRY POINTS                           │
-│  /chat/stream   /a2a   Temporal   /workflows               │
-└──────┬────────────┬────────┬──────────┬────────────────────┘
-       │            │        │          │
-       ▼            ▼        ▼          ▼
-┌────────────────────────────────────────────────────────────┐
-│              ONION MIDDLEWARE STACK                         │
-│  Tracing → Guard → RateLimit → Budget → Routing → Context  │
-└──────────────────────┬─────────────────────────────────────┘
-                       │
-          ┌────────────┼────────────┐
-          ▼            ▼            ▼
-   ┌──────────┐ ┌───────────┐ ┌──────────┐
-   │  Single  │ │  Multi-   │ │   Task   │
-   │  Agent   │ │  Agent    │ │  Agent   │
-   │ (CC Eng) │ │ Orchestr. │ │ (Internal│
-   └──────────┘ └─────┬─────┘ └──────────┘
-                      │
-         ┌────────────┼────────────┐
-         ▼            ▼            ▼
-   ┌──────────┐ ┌──────────┐ ┌──────────┐
-   │  Phased  │ │ Hierarch.│ │ PlanBuild│
-   │  Manager │ │  Manager │ │  Manager │
-   └──────────┘ └──────────┘ └──────────┘
-                      │
-                      ▼
-         ┌──────────────────────┐
-         │    CC Worker Pool    │
-         │  (Semaphore-bounded) │
-         │  Each worker = full  │
-         │  CC Engine session   │
-         └──────────────────────┘
-```
+<p align="center">
+  <img src="screenshots/automations.png" alt="Automations" width="100%" />
+</p>
+
+- **Cron Jobs** — schedule agents to run on any cron expression (e.g. daily reports, data sync)
+- **Webhooks** — trigger agent workflows from external services via HTTP endpoints
+- **Event Triggers** — fire agents on custom events with conditional rules
+- **Autonomous Mode** — agents that run independently on intervals, monitoring and acting without human input
+- **Execution History** — full audit trail of every automated run with stats and logs
+
+---
+
+### 🛡️ Behavior — Guardrails, Safety & Quality Control
+
+<p align="center">
+  <img src="screenshots/behavior.png" alt="Behavior & Guardrails" width="100%" />
+</p>
+
+- **Prompt Guard** — scans incoming prompts for injection attacks, PII, and malicious patterns
+- **Output Guard** — validates agent responses for quality, safety, and schema compliance
+- **Circuit Breaker** — halts cascading failures when error rate exceeds threshold
+- **Model Escalation** — automatically upgrades to higher-tier models for complex tasks
+- **Budget Guard** — monitors and limits token/API spend to prevent cost overruns
+- **Supervisor** — reviews agent output quality and triggers retries if below threshold
+
+---
+
+## 🔧 More Capabilities
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🧠 Multi-Agent Orchestration
+- Phased, hierarchical, and plan-build orchestration modes
+- Smart routing — auto-classifies intent and selects the best strategy
+- Human-in-the-loop (HITL) with approval gates
+- Handoff tools for lightweight agent-to-agent delegation
+
+</td>
+<td width="50%" valign="top">
+
+### 🗃️ Knowledge & Memory
+- RAG pipeline with multi-format ingestion (PDF, DOCX, PPTX, Excel)
+- Vector search across Milvus, Qdrant, MongoDB
+- Short-term + long-term memory with auto-compression
+- Brain / Vault — git-backed wiki-like knowledge management
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🔗 Protocols & Integrations
+- **MCP** — Model Context Protocol for external tools
+- **A2A** — Google's Agent-to-Agent protocol
+- Plugin system for custom extensions
+- Temporal workflows for durable, long-running tasks
+
+</td>
+<td width="50%" valign="top">
+
+### 🎨 Frontend
+- 45+ pages — chat, agents, tools, RAG, memory, org, tracing, ...
+- Dark glassmorphism design with teal accents
+- Real-time streaming UI with live tracing
+- Zustand state management + feature-based architecture
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -112,12 +128,12 @@
 | **Backend** | Python 3.10+, FastAPI, SQLAlchemy, Alembic, Pydantic |
 | **Frontend** | React 18, TypeScript, Vite, Tailwind CSS 4, Zustand |
 | **AI / LLM** | OpenAI, Anthropic, DashScope (Qwen), Gemini, Ollama |
-| **Protocols** | MCP (Model Context Protocol), A2A (Agent-to-Agent), SSE |
+| **Protocols** | MCP, A2A (Agent-to-Agent), SSE streaming |
 | **Vector DBs** | Milvus, Qdrant, MongoDB, OceanBase |
 | **Memory** | Redis, SQLite, In-Memory, Mem0 |
-| **Orchestration** | Temporal (durable workflows), asyncio concurrency |
-| **Observability** | OpenTelemetry, Langfuse, custom tracing |
-| **Infrastructure** | Docker, Docker Compose, K8s-ready |
+| **Orchestration** | Temporal, asyncio concurrency |
+| **Observability** | OpenTelemetry, Langfuse |
+| **Infra** | Docker, Docker Compose, K8s-ready |
 
 ---
 
@@ -125,18 +141,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Backend modules** | 30+ Python modules (~200k+ LoC) |
-| **API routes** | 100+ REST endpoints |
-| **Frontend pages** | 45+ React pages |
-| **Supported LLM providers** | 5+ (OpenAI, Anthropic, Qwen, Gemini, Ollama) |
-| **Vector DB integrations** | 5 (Milvus, Qdrant, MongoDB, MySQL, OceanBase) |
-| **Built-in tools** | 40+ |
-
----
-
-## 🖼️ Screenshots
-
-> Screenshots are available upon request. The frontend features a dark glassmorphism design with teal accents, streaming chat, knowledge graph visualization, and a multi-agent pipeline builder.
+| Backend modules | 30+ Python modules (~200k+ LoC) |
+| API routes | 100+ REST endpoints |
+| Frontend pages | 45+ React pages |
+| LLM providers | 5+ (OpenAI, Anthropic, Qwen, Gemini, Ollama) |
+| Vector DB integrations | 5 (Milvus, Qdrant, MongoDB, MySQL, OceanBase) |
+| Built-in tools | 40+ |
 
 ---
 
